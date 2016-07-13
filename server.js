@@ -21,6 +21,7 @@ const io = socketIo(server);
 
 io.on('connection', function(socket){
   var votes = {};
+
   console.log('A user has connected.', io.engine.clientsCount);
 
   io.sockets.emit('usersConnected', io.engine.clientsCount);
@@ -46,19 +47,18 @@ io.on('connection', function(socket){
 });
 
 function countVotes(votes){
-  var voteCount = {
+  // TODO: write better implementation of this function using lodash
+
+  let voteCount = {
     A: 0,
     B: 0,
     C: 0,
     D: 0
   };
-
-  // TODO: write better implementation of this function using lodash
   for(var vote in votes){
     voteCount[votes[vote]]++
   }
   return voteCount;
-
 }
 
 module.exports = server;

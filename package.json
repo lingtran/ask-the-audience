@@ -1,0 +1,29 @@
+{
+  "name": "ask-the-audience",
+  "version": "1.0.0",
+  "description": "Real-time application with WebSockets whereby someone can pose a question and the group/class can vote from one of four options.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lingtran/ask-the-audience.git"
+  },
+  "keywords": [
+    "real-time",
+    "websockets"
+  ],
+  "author": "Ling Tran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lingtran/ask-the-audience/issues"
+  },
+  "homepage": "https://github.com/lingtran/ask-the-audience#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "socket.io": "^1.4.8"
+  }
+}

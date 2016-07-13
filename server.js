@@ -22,8 +22,13 @@ const io = socketIo(server);
 io.on('connection', function(socket){
   console.log('A user has connected.', io.engine.clientsCount);
 
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
+
+  socket.emit('statusMessage', 'You have connected.');
+
   socket.on('disconnect', function(){
     console.log('A user has disconnected.', io.engine.clientsCount);
+    io.sockets.emit('userConnection', io.engine.clientsCount);
   });
 });
 

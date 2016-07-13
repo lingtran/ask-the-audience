@@ -32,18 +32,33 @@ io.on('connection', function(socket){
 
     if(channel === 'voteCast'){
       votes[socket.id] = message;
-      console.log(votes);
+      socket.emit('voteCount', countVotes(votes));
     }
   });
 
   socket.on('disconnect', function(){
     console.log('A user has disconnected.', io.engine.clientsCount);
     delete votes[socket.id];
-    console.log(votes);
+    socket.emit('voteCount', countVotes(votes));
     io.sockets.emit('userConnection', io.engine.clientsCount);
   });
 
 });
 
+function countVotes(votes){
+  var voteCount = {
+    A: 0,
+    B: 0,
+    C: 0,
+    D: -
+  };
+
+  // TODO: write better implementation of this function using lodash
+  for(var vote in votes){
+    voteCount[votes[vote]]++
+  }
+  return voteCount;
+
+}
 
 module.exports = server;

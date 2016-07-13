@@ -50,7 +50,7 @@ function countVotes(votes){
     A: 0,
     B: 0,
     C: 0,
-    D: -
+    D: 0
   };
 
   // TODO: write better implementation of this function using lodash

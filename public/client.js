@@ -25,7 +25,7 @@ socket.on('voteCount', function(votes){
 function displayVotesCast(votes){
   var keys = Object.keys(votes);
   keys.map(function(key){
-            var dataTag = document.getElementById('vote-' + key);
-            dataTag.innerHTML = votes[key] + " vote(s)";
+            var voteResult = document.getElementById('vote-' + key);
+            voteResult.innerHTML = votes[key] + " vote(s)";
           });
 }

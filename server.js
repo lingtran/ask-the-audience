@@ -28,13 +28,26 @@ io.on('connection', function(socket){
 
   socket.emit('statusMessage', 'You have connected.');
 
+  socket.emit('userVote', function(channel, message){
+
+  })
+
   socket.on('message', function(channel, message){
     console.log(channel, message);
 
     if(channel === 'voteCast'){
       votes[socket.id] = message;
       socket.emit('voteCount', countVotes(votes));
+      })
     }
+
+    // Emit a event to the user's individual socket that lets them know when their vote has been cast (and what vote they cast).
+    // if(channel === 'recentVoteCast'){
+    //   votes[socket.id] = message
+    //   socket.emit('recentVoteCast', function(votes){
+    //
+    //   })
+    // }
   });
 
   socket.on('disconnect', function(){
@@ -46,15 +59,16 @@ io.on('connection', function(socket){
 
 });
 
+let voteCount = {
+  A: 0,
+  B: 0,
+  C: 0,
+  D: 0
+};
+
 function countVotes(votes){
   // TODO: write better implementation of this function using lodash
 
-  let voteCount = {
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0
-  };
   for(var vote in votes){
     voteCount[votes[vote]]++
   }
